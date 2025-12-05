@@ -17,7 +17,7 @@ namespace CaoQuangNhat_2123110077_1_
         }
 
         // --- HÀM 1: GHI FILE (SAVE) ---
-        // Giống hệt bài 2
+       
         public void Write(InfoWindows iw)
         {
             try

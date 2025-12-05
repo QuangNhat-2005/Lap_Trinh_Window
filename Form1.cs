@@ -29,9 +29,9 @@ namespace CaoQuangNhat_2123110077_1_
             // 1. Dọn dẹp bảng cũ
             pnlDanhSachBai.Controls.Clear();
 
-            // Chỉnh màu nền cho cái bảng phía sau cho đẹp (Màu trắng khói)
+            // Chỉnh màu nền cho cái bảng phía sau cho đẹp 
             pnlDanhSachBai.BackColor = Color.WhiteSmoke;
-            pnlDanhSachBai.Padding = new Padding(10); // Cách lề một chút cho thoáng
+            pnlDanhSachBai.Padding = new Padding(10); 
 
             // 2. Vòng lặp tạo nút
             for (int i = 1; i <= 30; i++)
@@ -39,28 +39,28 @@ namespace CaoQuangNhat_2123110077_1_
                 Button btn = new Button();
                 btn.Text = "Bài " + i;
 
-                // --- PHẦN GIAO DIỆN ĐẸP ---
+              
 
                 // Kích thước nút to rõ ràng hơn
                 btn.Width = 120;
                 btn.Height = 60;
-                btn.Margin = new Padding(10); // Cách nhau rộng rãi
+                btn.Margin = new Padding(10);
 
                 // Font chữ hiện đại (Segoe UI, đậm, cỡ 12)
                 btn.Font = new Font("Segoe UI", 12, FontStyle.Bold);
 
-                // Màu sắc theo phong cách Flat Design (Xanh dương hiện đại)
+                
                 btn.BackColor = Color.FromArgb(52, 152, 219);
-                btn.ForeColor = Color.White; // Chữ màu trắng
+                btn.ForeColor = Color.White;
 
-                // Bỏ viền 3D cũ kỹ đi
+                
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
 
                 // Lưu số thứ tự
                 btn.Tag = i;
 
-                // --- PHẦN HIỆU ỨNG TƯƠNG TÁC (QUAN TRỌNG) ---
+                
 
                 // Khi rê chuột vào: Đổi màu đậm hơn + hiện bàn tay
                 btn.MouseEnter += (s, e) => {
@@ -88,9 +88,6 @@ namespace CaoQuangNhat_2123110077_1_
             }
         }
 
-        // Hàm xử lý khi bấm vào nút
-        // Hàm xử lý khi bấm vào nút
-        // Hàm xử lý khi bấm vào nút
         void BamVaoBai(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -100,7 +97,7 @@ namespace CaoQuangNhat_2123110077_1_
 
             string nameSpace = this.GetType().Namespace;
 
-            // Ghép lại: TênNamespace.TenForm (Ví dụ: CaoQuangNhat_2123110077_1_.FormBai1)
+
             Type type = Type.GetType(nameSpace + "." + tenForm);
 
             if (type != null)
