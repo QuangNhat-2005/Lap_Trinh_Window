@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO; // Nhớ thêm thư viện này để Lưu file
+using System.IO;
 
 namespace CaoQuangNhat_2123110077_1_
 {
