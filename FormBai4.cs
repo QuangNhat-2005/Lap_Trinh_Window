@@ -8,14 +8,13 @@ namespace CaoQuangNhat_2123110077_1_
 {
     public partial class FormBai4 : Form
     {
-        string path = Application.StartupPath + "\\form_bai4.xml"; // Đổi tên file khác để không đè lên bài cũ
-
+        string path = Application.StartupPath + "\\form_bai4.xml"; 
         public FormBai4()
         {
             InitializeComponent();
         }
 
-        // 1. Hàm Ghi (Copy từ bài cũ)
+
         public void Write(InfoWindows iw)
         {
             try
@@ -28,7 +27,7 @@ namespace CaoQuangNhat_2123110077_1_
             catch { }
         }
 
-        // 2. Hàm Đọc (Copy từ bài cũ)
+
         public InfoWindows Read()
         {
             try
@@ -43,38 +42,29 @@ namespace CaoQuangNhat_2123110077_1_
             catch { return null; }
         }
 
-        // --- SỰ KIỆN 1: LOAD FORM (KHÔI PHỤC) ---
+
         private void FormBai4_Load(object sender, EventArgs e)
         {
             InfoWindows iw = Read();
             if (iw != null)
             {
-                // Khôi phục kích thước
+               
                 this.Width = iw.Width;
                 this.Height = iw.Height;
-
-                // MỚI: Khôi phục vị trí
                 this.Location = iw.Location;
             }
         }
 
-        // --- SỰ KIỆN 2: FORM CLOSING (LƯU KHI TẮT) ---
-        // Lưu ý: Không dùng ResizeEnd nữa, dùng FormClosing
+
         private void FormBai4_FormClosing(object sender, FormClosingEventArgs e)
         {
             InfoWindows iw = new InfoWindows();
-
-            // Lấy kích thước hiện tại
             iw.Width = this.Size.Width;
             iw.Height = this.Size.Height;
-
-            // MỚI: Lấy vị trí hiện tại
             iw.Location = this.Location;
-
-            // Ghi xuống file
             Write(iw);
 
-            // MessageBox.Show("Đã lưu trạng thái!"); // Bỏ comment dòng này nếu muốn test
+       
         }
     }
 }

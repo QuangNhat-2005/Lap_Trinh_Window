@@ -37,6 +37,7 @@
             ClientSize = new Size(800, 450);
             Name = "FormBai4";
             Text = "FormBai4";
+            FormClosing += FormBai4_FormClosing;
             Load += FormBai4_Load;
             ResumeLayout(false);
         }
