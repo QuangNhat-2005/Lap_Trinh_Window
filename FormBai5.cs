@@ -38,7 +38,7 @@ namespace CaoQuangNhat_2123110077_1_
         //Thêm sự kiện Load để thông báo cách thoát 
         private void FormBai5_Load(object sender, EventArgs e)
         {
-            this.Text = "Đang ghi lại bàn phím... (Bấm Alt+F4 để thoát)";
+            this.Text = "Đang ghi lại bàn phím (Bấm phím bất kì)";
         }
     }
 }
