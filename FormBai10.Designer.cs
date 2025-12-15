@@ -76,7 +76,7 @@
             bt2.TabIndex = 3;
             bt2.Text = "2";
             bt2.UseVisualStyleBackColor = true;
-            bt2.Click += bt3_Click;
+            bt2.Click += bt2_Click;
             // 
             // bt3
             // 
@@ -86,6 +86,7 @@
             bt3.TabIndex = 4;
             bt3.Text = "3";
             bt3.UseVisualStyleBackColor = true;
+            bt3.Click += bt3_Click;
             // 
             // btCong
             // 

@@ -5,25 +5,20 @@ namespace CaoQuangNhat_2123110077_1_
 {
     public partial class FormBai10 : Form
     {
-        // --- 1. Khai báo biến "Bộ nhớ" ---
-        decimal workingMemory = 0; // Biến để lưu số thứ nhất
-        string opr = "";           // Biến để lưu phép tính (+ hoặc *)
-
         public FormBai10()
         {
             InitializeComponent();
         }
 
-        // --- 2. Xử lý khi bấm các NÚT SỐ (0, 1, 2, 3...) ---
-        // Mẹo: Bạn có thể copy hàm này cho các nút số khác
+        // --- 1. Xử lý các NÚT SỐ (Giữ nguyên) ---
         private void bt0_Click(object sender, EventArgs e)
         {
-            tbDisplay.Text += "0"; // Nối thêm số 0 vào màn hình
+            tbDisplay.Text += "0";
         }
 
         private void bt1_Click(object sender, EventArgs e)
         {
-            tbDisplay.Text += "1"; // Nối thêm số 1
+            tbDisplay.Text += "1";
         }
 
         private void bt2_Click(object sender, EventArgs e)
@@ -38,43 +33,64 @@ namespace CaoQuangNhat_2123110077_1_
 
         private void btCham_Click(object sender, EventArgs e)
         {
-            // Kiểm tra nếu chưa có dấu chấm nào thì mới cho thêm
+            // Kiểm tra: Nếu chưa có dấu chấm nào trong số hiện tại mới cho thêm
+            // (Lưu ý: Logic này đơn giản, nếu nhập 1.2+3.4 có thể cần check kỹ hơn, nhưng tạm thời để vầy cho dễ hiểu)
             if (!tbDisplay.Text.Contains("."))
             {
                 tbDisplay.Text += ".";
             }
         }
 
-        // --- 3. Xử lý khi bấm PHÉP TÍNH (+, *) ---
+        // --- 2. Xử lý PHÉP TÍNH (Sửa đổi: Chỉ nối thêm dấu, không xóa màn hình) ---
         private void btCong_Click(object sender, EventArgs e)
         {
-            opr = "+"; // Ghi nhớ là đang muốn Cộng
-            workingMemory = decimal.Parse(tbDisplay.Text); // Lưu số đang hiện vào bộ nhớ
-            tbDisplay.Clear(); // Xóa màn hình để nhập số thứ 2
+            tbDisplay.Text += "+"; // Hiện dấu + lên màn hình
         }
 
         private void btNhan_Click(object sender, EventArgs e)
         {
-            opr = "*"; // Ghi nhớ là đang muốn Nhân
-            workingMemory = decimal.Parse(tbDisplay.Text);
-            tbDisplay.Clear();
+            tbDisplay.Text += "*"; // Hiện dấu * lên màn hình
         }
 
-        // --- 4. Xử lý khi bấm DẤU BẰNG (=) ---
+        // --- 3. Xử lý nút BẰNG (Thay đổi hoàn toàn: Cắt chuỗi để tính) ---
         private void btBang_Click(object sender, EventArgs e)
         {
-            // Lấy số thứ 2 đang nhập trên màn hình
-            decimal secondValue = decimal.Parse(tbDisplay.Text);
-
-            // Tính toán dựa trên phép tính đã nhớ (opr)
-            if (opr == "+")
+            try
             {
-                tbDisplay.Text = (workingMemory + secondValue).ToString();
+                string bieuthuc = tbDisplay.Text; // Lấy toàn bộ chuỗi, ví dụ "10+5"
+
+                // TRƯỜNG HỢP 1: Phép Cộng (+)
+                if (bieuthuc.Contains("+"))
+                {
+                    // Cắt chuỗi tại dấu +
+                    // Ví dụ "10+5" -> mảng gồm ["10", "5"]
+                    string[] parts = bieuthuc.Split('+');
+
+                    decimal so1 = decimal.Parse(parts[0]);
+                    decimal so2 = decimal.Parse(parts[1]);
+
+                    decimal ketQua = so1 + so2;
+
+                    // Hiện kết quả
+                    tbDisplay.Text = ketQua.ToString();
+                }
+                // TRƯỜNG HỢP 2: Phép Nhân (*)
+                else if (bieuthuc.Contains("*"))
+                {
+                    string[] parts = bieuthuc.Split('*');
+
+                    decimal so1 = decimal.Parse(parts[0]);
+                    decimal so2 = decimal.Parse(parts[1]);
+
+                    decimal ketQua = so1 * so2;
+
+                    tbDisplay.Text = ketQua.ToString();
+                }
             }
-
-            if (opr == "*")
+            catch (Exception)
             {
-                tbDisplay.Text = (workingMemory * secondValue).ToString();
+                // Báo lỗi nếu người dùng nhập sai (ví dụ: "1++2" hoặc bấm Bằng khi trống)
+                MessageBox.Show("Lỗi biểu thức! Vui lòng nhập đúng dạng: Số + Số");
             }
         }
     }
